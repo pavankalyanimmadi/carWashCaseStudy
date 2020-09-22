@@ -13,16 +13,23 @@ import org.springframework.stereotype.Service;
 
 import com.CustomerServedRequests.pojo.Customer;
 import com.CustomerServedRequests.pojo.OrderFullDetail;
+import com.CustomerServedRequests.pojo.Payment;
 import com.CustomerServedRequests.pojo.WashOrder;
 import com.CustomerServedRequests.pojo.WashPackage;
 import com.CustomerServedRequests.pojo.Washer;
 import com.CustomerServedRequests.repo.CustomerRepo;
 import com.CustomerServedRequests.repo.OrderRepo;
+import com.CustomerServedRequests.repo.PaymentsRepo;
 import com.CustomerServedRequests.repo.WashPackageRepo;
 import com.CustomerServedRequests.repo.WasherRepo;
 
+
 @Service
 public class WashOrderService {
+	
+	
+	@Autowired
+	private PaymentsRepo paymentsRepo;
 	
 	@Autowired
 	private CustomerRepo cusRepo;
@@ -73,6 +80,25 @@ public class WashOrderService {
 		orderFullDetail.setTime(temp.getTime());
 		orderFullDetail.setRating(temp.getRating());
 		orderFullDetail.setComments(temp.getComments());
+		
+		orderFullDetail.setPaymentStatus(temp.isPaymentStatus());
+		orderFullDetail.setPaymentId(temp.getPaymentId());
+		
+		
+		
+		
+		if(temp.isPaymentStatus())
+		{
+			Optional<Payment> paytemp=paymentsRepo.findById(temp.getPaymentId());
+			if(paytemp.isPresent())
+			{
+				Payment payment=paytemp.get();
+				orderFullDetail.setPaymentCardNumber(payment.getCardNumber());
+			}
+			
+		}
+		
+		
 		
 		return orderFullDetail;
 		

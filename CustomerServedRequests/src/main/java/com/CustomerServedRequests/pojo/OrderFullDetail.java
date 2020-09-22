@@ -30,15 +30,23 @@ public class OrderFullDetail {
 	private String washerPhoneNumber;
 	
 	
-private int rating;
+private boolean  paymentStatus;
+	
+	private String paymentId;
+	private String paymentCardNumber;
+	
+       private int rating;
 	
 	private String comments;
 	
 	
 	
 	
+	
+	
+	
 	public int getRating() {
-		return rating;
+		return rating; 
 	}
 	public void setRating(int rating) {
 		this.rating = rating;
@@ -48,6 +56,24 @@ private int rating;
 	}
 	public void setComments(String comments) {
 		this.comments = comments;
+	}
+	public String getPaymentCardNumber() {
+		return paymentCardNumber;
+	}
+	public void setPaymentCardNumber(String paymentCardNumber) {
+		this.paymentCardNumber = paymentCardNumber;
+	}
+	public boolean isPaymentStatus() {
+		return paymentStatus;
+	}
+	public void setPaymentStatus(boolean paymentStatus) {
+		this.paymentStatus = paymentStatus;
+	}
+	public String getPaymentId() {
+		return paymentId;
+	}
+	public void setPaymentId(String paymentId) {
+		this.paymentId = paymentId;
 	}
 	public String getOredrId() {
 		return oredrId;
